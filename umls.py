@@ -45,9 +45,9 @@ import sys, os, os.path
 import pymedtermino
 from pymedtermino import Concepts, _MAPPINGS
 
-_encoding = "latin1"
+_encoding = "utf-8"
 db = db_cursor = None
-def connect_to_umls_db(host, user, password, db_name = "umls", encoding = "latin1"):
+def connect_to_umls_db(host, user, password, db_name = "umls", encoding = "utf-8"):
   """Connects to an UMLS MySQL database.
 This function **must** be called before using UMLS."""
   global db, db_cursor, _encoding
@@ -58,7 +58,7 @@ This function **must** be called before using UMLS."""
     try: import pymysql as sql_module
     except:
       import MySQLdb as sql_module
-  db        = sql_module.connect(host = host, user = user, passwd = password, db = db_name)
+  db        = sql_module.connect(host = host, user = user, passwd = password, db = db_name, charset='utf8')
   db_cursor = db.cursor()
   
   
